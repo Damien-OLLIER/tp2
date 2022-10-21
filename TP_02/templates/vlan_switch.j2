@@ -1,0 +1,9 @@
+hostname {{hostname}}
+{% for interface in interfaces %}
+interface {{interface.name}}
+description {{interface.description}}
+{% if interface.type != "" %}switchport mode {{interface.type}}{% endif %}
+{% if interface.type == "access" %}switchport access vlan {{interface.vlan_id}}{% endif %}
+no shut
+exit
+{% endfor %}
